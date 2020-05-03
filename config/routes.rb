@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: "toppages#index"
+  
+  get "build_room",to: "rooms#new"
+  
+  get 'enter_room', to: 'sessions#new'
+  post 'enter_room', to: 'sessions#create'
+  delete 'leave_room', to: 'sessions#destroy'
+  
+  resources :rooms, only: [:show,:create] do
+    collection do
+      get "search"
+    end
+  end
 end

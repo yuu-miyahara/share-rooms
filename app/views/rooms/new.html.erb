@@ -1,0 +1,28 @@
+<h1>部屋を作る</h1>
+
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @room, local: true) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :room_name, 'ルーム名' %>
+        <%= f.text_field :room_name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, 'パスワード ※任意' %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, 'パスワードの確認' %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+
+      <%= f.submit '部屋を作る', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>
