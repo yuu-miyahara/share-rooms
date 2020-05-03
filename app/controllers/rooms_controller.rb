@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
   before_action :require_user_logged_in, only: [:show]
   
   def show
-    @room = Rooms.find(params[:id])
+    @room = Room.find(params[:id])
   end
 
   def new
@@ -22,6 +22,8 @@ class RoomsController < ApplicationController
   end
 
   def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @rooms = Room.search(params[:search])
   end
   
   private

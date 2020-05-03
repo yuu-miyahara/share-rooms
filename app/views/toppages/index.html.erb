@@ -1,12 +1,13 @@
 
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_room.name %></p>
+  <p>ログイン完了ユーザ: <%= current_room.room_name %></p>
+  <%= link_to "退室する", leave_room_path, method: :delete %>
 <% else %>
   <div class="center jumbotron">
   <div class="text-center">
     <%= link_to "ルームを作る", build_room_path %>
-    <%= link_to "ルームに入る","_path" %>
-    <%= link_to "ルームを探す","_path" %>
+    <%= link_to "ルームに入る", enter_room_path %>
+    <%= link_to "ルームを探す", search_rooms_path %>
   </div>
 </div>
 <% end %>

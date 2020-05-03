@@ -1,2 +1,13 @@
-<h1>Rooms#search</h1>
-<p>Find me in app/views/rooms/search.html.erb</p>
+<p>検索</p>
+<%= form_tag(search_rooms_path,:method => 'get') do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag 'Search', :room_name => nil %>
+<% end %>
+
+<ul><% @rooms.each do |room| %>
+  <li>
+    <%= link_to room.room_name, room %>
+    <%= room.created_at %>
+  </li>
+  <% end %>
+</ul>

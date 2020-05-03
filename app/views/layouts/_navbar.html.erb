@@ -7,9 +7,18 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_room.room_name %></a>
+            <ul class="dropdown-menu dropdown-menu-right">
+            
+            </ul>
+          </li>
+        <% else %>
           <li class="nav-item"><%= link_to 'build', build_room_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'enter', enter_room_path, class: 'nav-link' %></li>
-        </ul>
+        <% end %>
+      </ul>
     </div>
   </nav>
 </header>
