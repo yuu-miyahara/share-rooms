@@ -1,7 +1,22 @@
 
-<% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_room.room_name %></p>
-  <%= link_to "退室する", leave_room_path, method: :delete %>
+<% if logged_in? && refusal? %>
+  <div class="row">
+    <aside class="col-sm-4">
+      
+      <%= form_with(model: @talk, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        <div class="form-group">
+          <%= f.text_area :content, class: 'form-control', rows: 5 %>
+        </div>
+        <%= f.submit 'トークする', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </aside>
+    <div class="col-sm-8">
+      <%= render 'talks/talks', talks: @talks %>
+    </div>
+  </div>
+
+  
 <% else %>
   <div class="center jumbotron">
   <div class="text-center">

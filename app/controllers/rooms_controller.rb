@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
 
     if @room.save
       flash[:success] = 'ユーザを登録しました。'
-      redirect_to @room
+      redirect_to enter_room_path
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new

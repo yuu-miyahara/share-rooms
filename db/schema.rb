@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_164734) do
+ActiveRecord::Schema.define(version: 2020_05_08_075020) do
+
+  create_table "bans", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "user_id"
+    t.string "banner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["banner_id"], name: "index_bans_on_banner_id"
+    t.index ["user_id", "banner_id"], name: "index_bans_on_user_id_and_banner_id", unique: true
+    t.index ["user_id"], name: "index_bans_on_user_id"
+  end
 
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "room_name"
@@ -19,4 +29,25 @@ ActiveRecord::Schema.define(version: 2020_05_03_164734) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "talks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "content"
+    t.string "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_talks_on_room_id"
+    t.index ["user_id"], name: "index_talks_on_user_id"
+  end
+
+  create_table "users", id: :string, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.integer "ban_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "bans", "users"
+  add_foreign_key "bans", "users", column: "banner_id"
+  add_foreign_key "talks", "rooms"
+  add_foreign_key "talks", "users"
 end

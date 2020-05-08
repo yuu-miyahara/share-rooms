@@ -1,0 +1,15 @@
+<ul class="list-unstyled">
+  <% talks.each do |talk| %>
+    <li class="media mb-3">
+      <div class="media-body">
+        <div>
+         <span class="text-muted">posted at <%= talk.created_at %><%= identify_name(talk) %><%= render "bans/ban_button", user: identify_user_id(talk) %> <%= talk.user_id %></span>
+        </div>
+        <div>
+          <p><%= talk.content %></p>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate talks %>
+</ul>

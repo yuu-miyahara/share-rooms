@@ -1,3 +1,4 @@
+
 <header class="mb-4 ">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" href="/">ShareRooms</a>
@@ -11,9 +12,22 @@
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_room.room_name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
-            
+              <%= link_to "退室する", leave_room_path, method: :delete, class: "nav-item" %>
             </ul>
           </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= name %></a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <%= form_with(model: identify_user, local:true) do |f| %>
+                <div class="form_group">
+                  <%= f.text_area :name, class: "form-control", rows: 1 %>
+                </div>
+                <%= f.submit "名前を変える", class: "btn btn-primary" %>
+              <% end %>
+            </ul>
+          </li>
+          <li><%= link_to "更新", root_path , class: "nav-item btn btn-light"%></li>
+          
         <% else %>
           <li class="nav-item"><%= link_to 'build', build_room_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'enter', enter_room_path, class: 'nav-link' %></li>
