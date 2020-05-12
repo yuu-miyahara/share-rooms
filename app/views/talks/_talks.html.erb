@@ -3,7 +3,7 @@
     <li class="media mb-3">
       <div class="media-body">
         <div>
-         <span class="text-muted"><%= talk.created_at.strftime('%Y/%m/%d') %><%= identify_name(talk) %><%= render "bans/ban_button", user: identify_user_id(talk) %> <%= talk.user_id %></span>
+         <span class="text-muted"><%= talk.created_at.strftime('%Y/%m/%d') %><%= talk.user_id %></span><%= identify_name(talk) %><%= render "bans/ban_button", user: identify_user_id(talk) %> 
         </div>
         <div>
           <p><%= talk.content %></p>
