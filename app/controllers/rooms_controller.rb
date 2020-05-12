@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
       while room = Room.find_by(room_name: room_name)
         n += 1
         room_name = room_name_params
-        room_name = "#{room_name} (#{n})"
+        room_name = "#{room_name}#{n}"
       end
       new_room_name = room_name
     end
