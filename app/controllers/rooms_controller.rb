@@ -10,14 +10,37 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(string_params)
-
-    if @room.save
-      flash[:success] = 'ユーザを登録しました。'
-      redirect_to enter_room_path
+    before_room_name = room_name_params
+    room_name = room_name_params
+    if room = Room.find_by(room_name: room_name)#ルーム名を決定する
+      n = 1
+      while room = Room.find_by(room_name: room_name)
+        n += 1
+        room_name = room_name_params
+        room_name = "#{room_name} (#{n})"
+      end
+      new_room_name = room_name
+    end
+    
+    @room = Room.new(room_params)
+    if new_room_name
+      @room.room_name = new_room_name
+      if @room.save
+        flash[:success] = "すでに同じ部屋名が使用されていたため#{new_room_name}として登録しました。"
+        redirect_to enter_room_path
+      else
+        flash.now[:danger] = '部屋の登録に失敗しました。'
+        render :new
+      end
     else
-      flash.now[:danger] = 'ユーザの登録に失敗しました。'
-      render :new
+      @room.room_name = before_room_name
+      if @room.save
+        flash[:success] = '部屋を登録しました。'
+        redirect_to enter_room_path
+      else
+        flash.now[:danger] = '部屋の登録に失敗しました。'
+        render :new
+      end
     end
   end
 
@@ -28,7 +51,13 @@ class RoomsController < ApplicationController
   
   private
   
-  def string_params
-    params.require(:room).permit(:room_name, :password, :password_confirmation)
+  def room_params
+    params.require(:room).permit(:password, :password_confirmation)
   end
+  
+  def room_name_params
+    hash = params.require(:room).permit(:room_name)
+    hash[:room_name]
+  end
+  
 end

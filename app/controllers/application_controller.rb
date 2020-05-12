@@ -3,10 +3,6 @@ class ApplicationController < ActionController::Base
   
   
   
-  def count_talks
-    @count_talks = room.talks.count
-  end
-  
   private
   
   
@@ -15,4 +11,6 @@ class ApplicationController < ActionController::Base
       redirect_to build_room_url
     end
   end
+  
+  
 end

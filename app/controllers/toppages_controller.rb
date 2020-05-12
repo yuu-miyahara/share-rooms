@@ -15,6 +15,7 @@ class ToppagesController < ApplicationController
       @talk = Talk.new(user_id: user, room_id: room, content: nil)
       # form_with 用
       @talks = current_room.talks.order(created_at: :desc).page(params[:page]).per(100)
+      
     end
     
     

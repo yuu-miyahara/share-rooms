@@ -8,11 +8,8 @@
   <li>
     <%= form_tag(enter_room_path, method: :get) do %>
       <%= hidden_field_tag :room_name, room.room_name %>
-      <%= submit_tag "#{room.room_name} + &ensp+ #{room.count_talks}" %>
+      <%= submit_tag "#{room.room_name} コメント数 #{count_talks(room)}"  %>
     <% end %>
-    
-    <%= link_to room.room_name, room %>
-    <%= room.created_at %>
   </li>
   <% end %>
 </ul>
