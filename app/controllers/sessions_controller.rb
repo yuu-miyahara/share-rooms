@@ -1,15 +1,27 @@
 class SessionsController < ApplicationController
   def new
   end
-
-  def create
+  
+  def create2
     room_name = params[:room_name]
     password = params[:password]
     if login(room_name, password)
-      flash[:success] = '入室に成功しました。'
+      flash[:success] = 'ログインに成功しました。'
       redirect_to root_url
     else
-      flash.now[:danger] = '入室に失敗しました。'
+      flash.now[:danger] = 'ログインに失敗しました。'
+      render :new
+    end
+  end
+
+  def create
+    room_name = params[:session][:room_name]
+    password = params[:session][:password]
+    if login(room_name, password)
+      flash[:success] = 'ログインに成功しました。'
+      redirect_to root_url
+    else
+      flash.now[:danger] = 'ログインに失敗しました。'
       render :new
     end
   end
@@ -25,7 +37,6 @@ class SessionsController < ApplicationController
   end
   
   private
-  
 
   def login(room_name, password)
     @room = Room.find_by(room_name: room_name)

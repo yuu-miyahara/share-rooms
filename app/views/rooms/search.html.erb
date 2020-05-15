@@ -8,7 +8,7 @@
   <% @rooms.each do |room| %>
     <% if room.nil_password == 0 %>
       <li>
-        <%= form_with(url: enter_room_path, scope: :session, local: true) do |f| %>
+        <%= form_with(url: enter_room2_path, scope: :session, local: true) do |f| %>
           <%= hidden_field_tag :room_name, room.room_name %>
           <%= hidden_field_tag :password, "password" %>
         <%= f.submit "#{room.room_name} トーク数 #{count_talks(room)}" %>

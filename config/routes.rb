@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "build_room",to: "rooms#new"
   get "build_nil_room",to: "rooms#new2"
 
-  
+  post 'enter_room2', to: 'sessions#create2'
   get 'enter_room', to: 'sessions#new'
   post 'enter_room', to: 'sessions#create'
   delete 'leave_room', to: 'sessions#destroy'
