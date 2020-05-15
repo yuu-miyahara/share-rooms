@@ -1,4 +1,4 @@
-<p>検索</p>
+<h1>ルームを探す</h1>
 <%= form_tag(search_rooms_path,:method => 'get') do %>
   <%= text_field_tag :search %>
   <%= submit_tag 'Search', :room_name => nil %>
@@ -11,14 +11,14 @@
         <%= form_with(url: enter_room_path, scope: :session, local: true) do |f| %>
           <%= hidden_field_tag :room_name, room.room_name %>
           <%= hidden_field_tag :password, "password" %>
-        <%= f.submit "#{room.room_name} コメント数 #{count_talks(room)}" %>
+        <%= f.submit "#{room.room_name} トーク数 #{count_talks(room)}" %>
         <% end %>
       </li>
     <% else %>
       <li>
         <%= form_tag(enter_room_path, method: :get) do %>
           <%= hidden_field_tag :room_name, room.room_name %>
-          <i class="fas fa-key"></i><%= submit_tag "#{room.room_name} コメント数 #{count_talks(room)}"  %>
+          <i class="fas fa-key"></i><%= submit_tag "#{room.room_name} トーク数 #{count_talks(room)}"  %>
         <% end %>
       </li>
     <% end %>

@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
     room_name = params[:room_name]
     password = params[:password]
     if login(room_name, password)
-      flash[:success] = 'ログインに成功しました。'
+      flash[:success] = '入室に成功しました。'
       redirect_to root_url
     else
-      flash.now[:danger] = 'ログインに失敗しました。'
+      flash.now[:danger] = '入室に失敗しました。'
       render :new
     end
   end

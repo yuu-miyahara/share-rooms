@@ -30,19 +30,19 @@ class RoomsController < ApplicationController
     if new_room_name
       @room.room_name = new_room_name
       if @room.save
-        flash[:success] = "すでに同じ部屋名が使用されていたため#{new_room_name}として登録しました。"
+        flash[:success] = "すでに同じルーム名が使用されていたため#{new_room_name}として登録しました。"
         redirect_to enter_room_path
       else
-        flash.now[:danger] = '部屋の登録に失敗しました。'
+        flash.now[:danger] = 'ルームの作成に失敗しました。'
         render :new
       end
     else
       @room.room_name = before_room_name
       if @room.save
-        flash[:success] = '部屋を登録しました。'
+        flash[:success] = 'ルームを作成しました。'
         redirect_to enter_room_path
       else
-        flash.now[:danger] = '部屋の登録に失敗しました。'
+        flash.now[:danger] = 'ルームの作成に失敗しました。'
         render :new
       end
     end
