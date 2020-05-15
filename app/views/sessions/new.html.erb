@@ -17,11 +17,11 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :password, 'パスワード' %>
-        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.label :password, 'パスワード ＊パスワードが設定されていない場合は変更せずに入室してください'%>
+        <%= f.password_field :password,value: "password", class: 'form-control' %>
       </div>
 
-      <%= f.submit '部屋に入る', class: 'btn btn-primary btn-block' %>
+      <%= f.submit '入室する', class: 'btn btn-primary btn-block' %>
     <% end %>
 
     <p> <%= link_to '部屋を新しく作りますか?', build_room_path %></p>

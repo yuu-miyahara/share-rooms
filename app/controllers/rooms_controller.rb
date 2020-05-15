@@ -8,6 +8,10 @@ class RoomsController < ApplicationController
   def new
     @room = Room.new
   end
+  
+  def new2
+    @room = Room.new
+  end
 
   def create
     before_room_name = room_name_params
@@ -43,16 +47,24 @@ class RoomsController < ApplicationController
       end
     end
   end
+  
+  def enter
+  end
 
   def search
     #Viewのformで取得したパラメータをモデルに渡す
     @rooms = Room.search(params[:search])
   end
   
+  def nil_enter_room
+    session[:room_id] = @room.id
+    redirect_to root_path
+  end
+  
   private
   
   def room_params
-    params.require(:room).permit(:password, :password_confirmation)
+    params.require(:room).permit(:password, :password_confirmation, :nil_password)
   end
   
   def room_name_params
